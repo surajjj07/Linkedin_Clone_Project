@@ -49,9 +49,6 @@ io.on("connection",(socket)=>{
    }) 
 
 
-server.listen(port,()=>{
-    connectDb()
-    console.log("server started");
-})
+
 
 
