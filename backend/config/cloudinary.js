@@ -1,5 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 import fs from "fs"
+
+// function for storing image on the cloudinary
 const uploadOnCloudinary=async (filePath)=>{
     cloudinary.config({ 
         cloud_name:process.env.CLOUDINARY_CLOUD_NAME , 

@@ -2,6 +2,10 @@ import Post from "../models/Post.model.js"
 import uploadOnCloudinary from "../config/cloudinary.js"
 import { io } from "../index.js";
 import Notification from "../models/notification.model.js";
+
+/*
+This middleware helps user to create post. If user wants to upload a image with the post it store image on cloudinary. It stores the post data into the Post database with the user's id.
+*/
 export const createPost=async (req,res)=>{
     try {
         let {description}=req.body
@@ -19,14 +23,17 @@ export const createPost=async (req,res)=>{
             description
         })
     }
-return res.status(201).json(newPost)
+return res.status(201).json({newPost,message:"Post created..!"})
 
     } catch (error) {
-        return res.status(201).json(`create post error ${error}`)
+        return res.status(201).json(`Can not create post yet ${error}`)
     }
 }
 
-
+/*
+This middleware find all the post in database and send to the frontend to show on the website 
+with the author's details.
+*/
 export const getPost=async (req,res)=>{
     try {
         const post=await Post.find()
@@ -39,6 +46,11 @@ export const getPost=async (req,res)=>{
     }
 }
 
+
+/*
+This middleware creates like and store all likes in the databse with the user id who liked 
+the post and also which post
+*/
 export const like =async (req,res)=>{
     try {
         let postId=req.params.id
@@ -72,6 +84,9 @@ export const like =async (req,res)=>{
     }
 }
 
+/*
+This middleware allows user to comment on the post and store that comment into post database
+*/
 export const comment=async (req,res)=>{
     try {
         let postId=req.params.id

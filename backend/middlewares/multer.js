@@ -1,6 +1,8 @@
 import multer from "multer"
 
-
+/*
+This is multer storage . it stores the recently image.
+*/
 
 let storage=multer.diskStorage({
     destination:(req,file,cb)=>{
